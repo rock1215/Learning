@@ -1,5 +1,6 @@
 import React, {createContext, useState, FC, useEffect} from "react";
 import firestore from "@react-native-firebase/firestore";
+import { colors } from "../../infrastructures/theme/colors";
 
 interface QuestionsContextInterface {
     question: Question | undefined;
@@ -26,7 +27,7 @@ export const QuestionsContextProvider: FC = ({ children }) => {
 
     const onNext = () => {
         const questions = questionArray;
-        if (questions) {
+        if (questions.length > 0) {
             setQuestion(questions.shift());
             setQuestionArray(questions);
         }        
