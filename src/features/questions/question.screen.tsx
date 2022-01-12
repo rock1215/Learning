@@ -1,9 +1,10 @@
 import React, {useState, useContext, useEffect} from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import Icon from 'react-native-vector-icons/Entypo';
 import { SafeArea } from "../../components/utils/safe-area.component";
+import { colors } from "../../infrastructures/theme/colors";
 import { QuestionsContext } from "../../services/questions/questions.context";
-import { BottomButton, BottomButtonContainer, ButtonsContainer, ButtonText, ChoiceButton, ChoiceText, ChoiceView, ContainerView, IconContainer, QuestionEnglishAnswerText, QuestionEnglishText, QuestionGermanAnswerText, QuestionGermanText, ResultMessage, ResultMessageView, Title } from "../components/question.styles";
+import { BottomButton, BottomButtonContainer, ButtonsContainer, ButtonText, ChoiceButton, ChoiceText, ChoiceView, ContainerView, IconContainer, QuestionEnglishAnswerText, QuestionEnglishText, QuestionGermanAnswerContianer, QuestionGermanAnswerText, QuestionGermanText, QuestionGermanTextContianer, ResultMessage, ResultMessageView, Title } from "../components/question.styles";
 
 enum Question_State {
     initial,
@@ -45,11 +46,30 @@ export const QuestionScreen = () => {
                         <QuestionEnglishAnswerText>{question.answer.answer_en}</QuestionEnglishAnswerText>
                         {question.question_en[1]}
                     </QuestionEnglishText>
+                    <QuestionGermanTextContianer>
                     <QuestionGermanText>
                         {question.question_de[0]}
-                        <QuestionGermanAnswerText variant={selection ? "selected" : null}>{selection ? `    ${selection}    ` : "___________"}</QuestionGermanAnswerText>
+                    </QuestionGermanText>
+                    { selection ?
+                        (
+                            <View style={{
+                                padding: 20, 
+                                backgroundColor: viewState != Question_State.result ? colors.bg.white : isRight ? colors.bg.green : colors.bg.red, 
+                                borderRadius: 20
+                            }}>
+                                <QuestionGermanAnswerText variant={"selected"}>{selection}</QuestionGermanAnswerText>
+                            </View>
+                        ) :
+                        (
+                            <QuestionGermanAnswerText >{"___________"}</QuestionGermanAnswerText>
+                        )
+                    }
+                        
+                    <QuestionGermanText>
                         {question.question_de[1]}
                     </QuestionGermanText>
+                    
+                    </QuestionGermanTextContianer>
                     <ButtonsContainer>
                         {
                             question.choices.map((choice, index) => {

@@ -37,7 +37,7 @@ export const ChoiceView = styled.View`
 
 export const ChoiceText = styled.Text`
     font-weight: ${props => props.theme.fontWeights.medium};
-    font-size: ${props => props.theme.fontSizes.title};
+    font-size: ${props => props.theme.fontSizes.body};
     color: ${props => props.theme.colors.text.secondary};
 `
 
@@ -132,8 +132,15 @@ export const QuestionEnglishAnswerText = styled.Text`
     text-decoration-color: ${props => props.theme.colors.text.primary};
 `
 
-export const QuestionGermanText = styled.Text`
+export const QuestionGermanTextContianer = styled.View`
     margin-top: 30px;    
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+`
+
+export const QuestionGermanText = styled.Text`
     font-weight: ${props => props.theme.fontWeights.medium};
     font-size: ${props => props.theme.fontSizes.body};
     color: ${props => props.theme.colors.text.primary};
@@ -143,7 +150,4 @@ export const QuestionGermanAnswerText = styled.Text`
     font-weight: ${props => props.theme.fontWeights.medium};
     font-size: ${props => props.theme.fontSizes.title};
     color: ${props => props.variant ? props.theme.colors.text.secondary : props.theme.colors.text.primary};
-    ${props => props.variant ? "text-decoration: underline;" : ""}
-    ${props => props.variant ? `background-color: white` : ""}
-    text-decoration-color: ${props => props.theme.colors.text.primary};
 `
