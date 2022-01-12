@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "490778907312",
+    "project_id": "learning-547bb",
+    "storage_bucket": "learning-547bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490778907312:android:576ae64c0d64f018cb6175",
+        "android_client_info": {
+          "package_name": "com.learningtsproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490778907312-h05d1t789esc9ma2csvv1ie9ldtfvkco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM-PRtYYslJ6TKL5N1OLlrAwXpthlTPDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490778907312-h05d1t789esc9ma2csvv1ie9ldtfvkco.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "490778907312-60ma582j37uhtr0fnovsth3rvgc32s39.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.LearningTSProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
