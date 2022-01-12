@@ -142,7 +142,7 @@ export const QuestionEnglishAnswerText = styled.Text`
 `
 
 export const QuestionGermanTextContianer = styled.View`
-    margin-top: 30px;    
+    margin-top: 30px;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;

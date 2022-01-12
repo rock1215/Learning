@@ -9,15 +9,6 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 import { ThemeProvider } from "styled-components/native";
 import { QuestionScreen } from './src/features/questions/question.screen';
 
