@@ -1,8 +1,9 @@
 import React, {useState, useContext, useEffect} from "react";
-import { Text, TouchableOpacity, TouchableOpacityBase } from "react-native";
+import { TouchableOpacity } from "react-native";
+import Icon from 'react-native-vector-icons/Entypo';
 import { SafeArea } from "../../components/utils/safe-area.component";
 import { QuestionsContext } from "../../services/questions/questions.context";
-import { BottomButton, BottomButtonContainer, ButtonsContainer, ButtonText, ChoiceButton, ChoiceText, ChoiceView, ContainerView, QuestionEnglishAnswerText, QuestionEnglishText, QuestionGermanAnswerText, QuestionGermanText, Title } from "../components/question.styles";
+import { BottomButton, BottomButtonContainer, ButtonsContainer, ButtonText, ChoiceButton, ChoiceText, ChoiceView, ContainerView, IconContainer, QuestionEnglishAnswerText, QuestionEnglishText, QuestionGermanAnswerText, QuestionGermanText, ResultMessage, ResultMessageView, Title } from "../components/question.styles";
 
 enum Question_State {
     initial,
@@ -51,9 +52,9 @@ export const QuestionScreen = () => {
                     </QuestionGermanText>
                     <ButtonsContainer>
                         {
-                            question.choices.map(choice => {
+                            question.choices.map((choice, index) => {
                                 return (
-                                    <ChoiceButton key={choice}>
+                                    <ChoiceButton key={`${choice} - ${index}`}>
                                         <TouchableOpacity onPress={() => {
                                             if (viewState != Question_State.result) {
                                                 setViewState(Question_State.check)
@@ -73,7 +74,17 @@ export const QuestionScreen = () => {
                         viewState != Question_State.result ? null :
                         isRight ? "success" : "failed"
                     }>
-                        <TouchableOpacity onPress={goNext}>
+                        {viewState == Question_State.result &&
+                        (
+                            <ResultMessageView>
+                                <ResultMessage>{isRight ? "Good Job!" : `Answer is ${question.answer.answer_de}`}</ResultMessage>
+                                <IconContainer>
+                                    <Icon name="flag" color="#fff" size={20}/>
+                                </IconContainer>
+                            </ResultMessageView>
+                        )}
+                        
+                        <TouchableOpacity onPress={goNext} style={{width: "80%"}}>
                             <BottomButton variant={
                                 viewState == Question_State.initial ?  null : 
                                 viewState == Question_State.check ? "selected" : "result"

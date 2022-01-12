@@ -90,6 +90,26 @@ export const ButtonText = styled.Text`
     }}
 `
 
+export const ResultMessageView = styled.View`
+    width: 80%;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+`
+
+export const ResultMessage = styled.Text`
+    font-weight: ${props => props.theme.fontWeights.bold};
+    font-size: ${props => props.theme.fontSizes.title};
+    color: ${props => props.theme.colors.text.primary};
+`;
+
+export const IconContainer = styled.View`
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+`
+
 export const Title = styled.Text`
     margin-top: 80px;
     font-weight: ${props => props.theme.fontWeights.regular};
