@@ -29,7 +29,7 @@ export const ChoiceButton = styled.View`
 
 export const ChoiceView = styled.View`
     background-color: ${props => props.theme.colors.bg.white};
-    padding: 20px;
+    padding: 15px;
     align-items: center;
     justify-content: center;
     border-radius: 15px;
