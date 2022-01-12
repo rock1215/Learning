@@ -1,8 +1,8 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Text, TouchableOpacity, TouchableOpacityBase } from "react-native";
 import { SafeArea } from "../../components/utils/safe-area.component";
 import { QuestionsContext } from "../../services/questions/questions.context";
-import { ButtonsContainer, ChoiceButton, ChoiceText, ChoiceView, ContainerView, QuestionEnglishAnswerText, QuestionEnglishText, QuestionGermanAnswerText, QuestionGermanText, Title } from "../components/question.styles";
+import { BottomButton, BottomButtonContainer, ButtonsContainer, ButtonText, ChoiceButton, ChoiceText, ChoiceView, ContainerView, QuestionEnglishAnswerText, QuestionEnglishText, QuestionGermanAnswerText, QuestionGermanText, Title } from "../components/question.styles";
 
 enum Question_State {
     initial,
@@ -13,6 +13,26 @@ enum Question_State {
 export const QuestionScreen = () => {
     const {question, onNext} = useContext(QuestionsContext);
     const [selection, setSelection] = useState<string | null>(null);
+    const [viewState, setViewState] = useState<Question_State>(Question_State.initial);
+    const [isRight, setIsRight] = useState<boolean>(false);
+
+    const goNext = () => {
+        if (viewState === Question_State.check) {
+            setViewState(Question_State.result);
+            if (selection === question.answer.answer_de) {
+                setIsRight(true);
+            } else {
+                setIsRight(false);
+            }
+        } else if (viewState == Question_State.result) {
+            onNext();
+        }        
+    }
+
+    useEffect(() => {
+        setViewState(Question_State.initial);
+        setSelection(null);
+    }, [question])
 
     return (
         <SafeArea>
@@ -35,18 +55,36 @@ export const QuestionScreen = () => {
                                 return (
                                     <ChoiceButton key={choice}>
                                         <TouchableOpacity onPress={() => {
-                                            setSelection(choice);
+                                            if (viewState != Question_State.result) {
+                                                setViewState(Question_State.check)
+                                                setSelection(choice);
+                                            }                                            
                                         }}>
                                             <ChoiceView>
                                                 <ChoiceText>{choice}</ChoiceText>
                                             </ChoiceView>
                                         </TouchableOpacity>                                        
-                                    </ChoiceButton>
-                                    
+                                    </ChoiceButton>                                    
                                 )
                             })
                         }
                     </ButtonsContainer>
+                    <BottomButtonContainer variant={
+                        viewState != Question_State.result ? null :
+                        isRight ? "success" : "failed"
+                    }>
+                        <TouchableOpacity onPress={goNext}>
+                            <BottomButton variant={
+                                viewState == Question_State.initial ?  null : 
+                                viewState == Question_State.check ? "selected" : "result"
+                            }>
+                                <ButtonText variant={
+                                    viewState != Question_State.result ? null :
+                                    isRight ? "success" : "failed"
+                                }>CONTINUE</ButtonText>
+                            </BottomButton>
+                        </TouchableOpacity>
+                    </BottomButtonContainer>
                 </ContainerView> 
             )}
                        

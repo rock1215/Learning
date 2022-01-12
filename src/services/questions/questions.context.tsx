@@ -26,8 +26,10 @@ export const QuestionsContextProvider: FC = ({ children }) => {
 
     const onNext = () => {
         const questions = questionArray;
-        setQuestion(questions.shift());
-        setQuestionArray(questions);
+        if (questions) {
+            setQuestion(questions.shift());
+            setQuestionArray(questions);
+        }        
     }
 
     useEffect(() => {
