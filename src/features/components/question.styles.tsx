@@ -22,17 +22,26 @@ export const ButtonsContainer = styled.View`
 
 export const ChoiceButton = styled.View`
     flex-basis: 50%
-    align-items: center;
+    align-items: ${props => {
+        if (props.variant == "center") {
+            return "center";
+        } else if (props.variant == "left") {
+            return "flex-end";
+        } else {
+            return "flex-start";
+        }
+    }};
     justify-content: center; 
-    margin-top: 30px;       
+    margin-top: 30px;           
 `
 
 export const ChoiceView = styled.View`
     background-color: ${props => props.theme.colors.bg.white};
     padding: 15px;
-    align-items: center;
     justify-content: center;
     border-radius: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
 `
 
 export const ChoiceText = styled.Text`

@@ -74,14 +74,17 @@ export const QuestionScreen = () => {
                         {
                             question.choices.map((choice, index) => {
                                 return (
-                                    <ChoiceButton key={`${choice} - ${index}`}>
+                                    <ChoiceButton key={`${choice} - ${index}`} variant={
+                                        index % 2 == 1 ? "right" : 
+                                        index == question.choices.length - 1 ? "center" : "left"
+                                    }>
                                         <TouchableOpacity onPress={() => {
                                             if (viewState != Question_State.result) {
                                                 setViewState(Question_State.check)
                                                 setSelection(choice);
                                             }                                            
                                         }}>
-                                            <ChoiceView>
+                                            <ChoiceView >
                                                 <ChoiceText>{choice}</ChoiceText>
                                             </ChoiceView>
                                         </TouchableOpacity>                                        
